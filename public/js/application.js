@@ -1,12 +1,5 @@
 var lineChart = (function(){
   var initChart = function(fkData){
-    var lineData = [{'x': 1,'y': 5},
-                    {'x': 20,'y': 20},
-                    {'x': 40,'y': 10},
-                    {'x': 60,'y': 40},
-                    {'x': 80,'y': 5},
-                    {'x': 100,'y': 60}
-                    ];
     var vis = d3.select("#visualisation"),
       WIDTH = 1000,
       HEIGHT = 500,
@@ -16,18 +9,18 @@ var lineChart = (function(){
         bottom: 20,
         left: 50
       },
-    xRange = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([d3.min(lineData, function (d) {
-        return d.x;
+    xRange = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([d3.min(fkData, function (d) {
+        return d.time;
       }),
-      d3.max(lineData, function (d) {
-        return d.x;
+      d3.max(fkData, function (d) {
+        return d.time;
       })
     ]),
-    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([d3.min(lineData, function (d) {
-        return d.y;
+    yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([d3.min(fkData, function (d) {
+        return d.cloudCover;
       }),
-      d3.max(lineData, function (d) {
-        return d.y;
+      d3.max(fkData, function (d) {
+        return d.cloudCover;
       })
     ]),
     xAxis = d3.svg.axis()
@@ -49,14 +42,14 @@ var lineChart = (function(){
       .call(yAxis);
     var lineFunc = d3.svg.line()
     .x(function (d) {
-      return xRange(d.x);
+      return xRange(d.time);
     })
     .y(function (d) {
-      return yRange(d.y);
+      return yRange(d.cloudCover);
     })
     .interpolate('linear');
     vis.append("svg:path")
-      .attr("d", lineFunc(lineData))
+      .attr("d", lineFunc(fkData))
       .attr("stroke", "blue")
       .attr("stroke-width", 2)
       .attr("fill", "none");
@@ -77,7 +70,7 @@ $(document).ready(function() {
     $.get("/things").done(function(data){
       var fk_resp = JSON.parse(data).hourly.data;
       $('<svg id="visualisation" width="1000" height="500"></svg>').appendTo('#things');
-      lineChart.initChart();
+      lineChart.initChart(fk_resp);
     });
   })
 });
