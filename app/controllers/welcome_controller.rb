@@ -2,11 +2,10 @@ get '/' do
   erb :index
 end
 
-get '/:c1/:c2' do
+get '/things' do
   if request.xhr?
-    city1 = params[:c1]
-    city2 = params[:c2]
-    "Moving from #{city1} to #{city2}."
+    resp = Unirest.get "https://api.forecast.io/forecast/81c88efeafdeb098caa777f0281510a8/37.8267,-122.423"
+    resp.body.to_json
   else
     status 404
   end
