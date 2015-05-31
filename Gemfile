@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.2'
+ruby '2.0.0'
 
 # PostgreSQL driver
 gem 'pg'
@@ -12,7 +12,7 @@ gem 'activesupport', '~>4.2.0'
 gem 'activerecord', '~>4.2.0'
 
 gem 'rake'
-
+gem 'unirest'
 gem 'shotgun'
 gem 'hirb'
 
