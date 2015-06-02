@@ -99,7 +99,7 @@ $(document).ready(function() {
   $('body').on('click','#compare',function(event){
     event.preventDefault();
     $.get("/things").done(function(data){
-      var  ,ki8AAQ       = JSON.parse(data).hourly.data;
+      var fk_resp = JSON.parse(data).hourly.data;
       $('<svg id="visualisation" width="'+parseInt(d3.select('#things').style('width'),10)+'" height="500"></svg>').appendTo('#things');
       size.resize('#visualisation');
       lineChart.initChart(fk_resp);
