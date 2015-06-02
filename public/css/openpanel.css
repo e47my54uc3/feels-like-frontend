@@ -305,8 +305,15 @@ Documentation: http://docs.sonhlab.com/openpanel-responsive-panel-anywhere/
   position: relative;
 }
 
+select {
+	-webkit-appearance: none;
+	text-indent: 10%;
+	width: 20%;
+	box-shadow: 0 3px 6px #888888;
+}
+
 .location-block{
   position: relative;
   top: 400px;
-  left: 32%;
+  left: 30%;
 }
