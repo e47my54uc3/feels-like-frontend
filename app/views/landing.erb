@@ -35,34 +35,6 @@
       <!-- <input type="submit" value="What's it Feel Like?">
     </form> -->
 
-    <script type="text/javascript">
-       $('#city-1-data').change(function(){
-        var cityVal = $(this).find(":selected").val();
-            console.log("the value you selected: " + cityVal);
-            $.ajax({
-                type: "GET",
-                dataType: "JSON",
-                url: "http://dbc-feels-like.herokuapp.com/city/" + cityVal + "/weather"
-            }).done(function(data){
-                localStorage.setItem(cityVal, JSON.stringify(data));
-            })
-       })
-       $('#city-2-data').change(function(){
-        var cityVal = $(this).find(":selected").val();
-            console.log("the value you selected: " + cityVal);
-            $.ajax({
-                type: "GET",
-                dataType: "JSON",
-                url: "http://dbc-feels-like.herokuapp.com/city/" + cityVal + "/weather"
-            }).done(function(data){
-                localStorage.setItem(cityVal, JSON.stringify(data));
-            })
-       })
-        function getCityWeather(cityVal){
-             var retrievedObject = localStorage.getItem(cityVal);
-             return JSON.parse(retrievedObject);
-        }
-    </script>
 
   </div>
 
