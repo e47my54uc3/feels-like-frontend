@@ -10,3 +10,8 @@ get '/things' do
     status 404
   end
 end
+
+
+get '/landing' do
+  erb :landing
+end
