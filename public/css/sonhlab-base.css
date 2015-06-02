@@ -120,21 +120,33 @@ Website: http://sonhlab.com
 /* Solid Colors */
 .solid-lightblue { background:#E4F0F7; }
 .solid-blue { background:#00BBE2; }
+
+.winter-blue { background:#ACE4EA;}
+
 .solid-blue-2 { background:#2C84EE; }
 .solid-darkblue { background:#044E94; }
 .solid-violetred { background:#781766; }
 .solid-red { background:#E51400;}
+
+.autumn-orange { background:#d67418; }
+
 .solid-red-2 { background:#E81750; }
 .solid-pink { background:#FF539B; }
 .solid-purple { background:#D02090; }
 .solid-orange { background:#FB8F02; }
 .solid-orange-2 { background:#FF6600; }
+
+.summer-yellow { background:#f7f749; }
+
 .solid-orange-3 { background:#DD5F37; }
 .solid-coral { background:#CD5B45; }
 .solid-lightgreen { background:#F5FFFA; }
 .solid-green { background:#67B239; }
 .solid-green-2 {background:#96BF01; }
 .solid-darkgreen { background:#016C38; }
+
+.spring-green { background:#00ff7f; }
+
 .solid-olive { background:#999900}
 .solid-grass { background:#CDCD00; }
 .solid-darkred { background:#5F0000; }

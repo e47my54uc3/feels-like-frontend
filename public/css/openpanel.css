@@ -34,7 +34,7 @@ Documentation: http://docs.sonhlab.com/openpanel-responsive-panel-anywhere/
 	text-decoration:none;
 	cursor:pointer;
 	margin-left:1em;
-	
+
 }
 .op-tabstyle-top:hover {
 	box-shadow:0px 0px 6px 3px #fff;
@@ -62,7 +62,7 @@ Documentation: http://docs.sonhlab.com/openpanel-responsive-panel-anywhere/
 	vertical-align: middle;
 	margin:auto;
 	padding:0px;
-	position:relative;	
+	position:relative;
 }
 
 .op-block2 {
@@ -90,11 +90,11 @@ Documentation: http://docs.sonhlab.com/openpanel-responsive-panel-anywhere/
 	width:100%;
 }
 .op-menu a {
-	padding:10px 20px;	
+	padding:10px 20px;
 	display:block;
 	position:relative;
 	height:48px;
-	
+
 }
 .op-icons {
 	width:32px;
@@ -244,11 +244,69 @@ Documentation: http://docs.sonhlab.com/openpanel-responsive-panel-anywhere/
 @media screen and (max-width:590px) {
 	.img-holder {
 		width:100%;
-		
+
 	}
 }
 
 
 .thumb-holder { margin:20px;}
 .thumbnails { float:left; width:192px; height:144px; margin-bottom:10px; margin-right:10px; }
-.thumbnails img { max-width:192px;} 
+.thumbnails img { max-width:192px;}
+
+
+/*Edwin Test Area*/
+
+#feels_like{
+  transform: rotate(270deg);
+  position: relative;
+  width: 140px;
+  display: inline-block;
+  left: -10px;
+  color: white;
+}
+
+#looks_like{
+  position: relative;
+  width: 140px;
+  display: inline-block;
+  top: 20px;
+  color: white;
+}
+
+#tastes_like{
+  transform: rotate(90deg);
+  position: relative;
+  width: 160px;
+  display: inline-block;
+  top: 10px;
+  left: -60px;
+  color: white;
+}
+
+#smells_like{
+  color: white;
+}
+
+
+.box-shadow{
+  box-shadow: 0 3px 6px #888888;
+  }
+
+#feels-like-title{
+  text-align: center;
+  top: 10px;
+  margin: 10px;
+  position: relative;
+}
+
+#feels-like-subtitle{
+  text-align: center;
+  top: 10px;
+  position: relative;
+}
+
+.location-block{
+  position: relative;
+  top: 400px;
+  left: 32%;
+}
