@@ -1,10 +1,14 @@
 $(document).ready(function(){
+  $("img").on('click', function() {
+    d3.selectAll("svg > *").remove()
+    // debugger
+  });
 
   $('.call-graph-button').on('click', '.solid-orange-2', function(){
     console.log('test');
-    d3.selectAll("svg > *").remove()
+    // d3.select('svg').remove()
+    // debugger
     // console.log($('#actual_graph').parent());
-    debugger
     lineCharts.singleCity(cities.retrieve('to'),'#actual_graph', actualCity);
   });
 
