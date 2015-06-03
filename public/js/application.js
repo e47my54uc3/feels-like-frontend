@@ -14,16 +14,16 @@
 
 
 // SINGLE CITY ARGS HASHES THAT WORK
-// var feelsLikeCity = {
-//   params: ['avg_apparent_day_temp','avg_apparent_night_temp','high_apparent_temp','low_apparent_temp'],
-//   colors: ['yellow','grey','red','blue'],
-//   names: ['Daytime','Nighttime','High','Low'],
-// }
-// var actualCity = {
-//   params: ['avg_temp','high_temp','low_temp'],
-//   colors: ['black','red','blue'],
-//   names: ['Average','High','Low'],
-// }
+var feelsLikeCity = {
+  params: ['avg_apparent_day_temp','avg_apparent_night_temp','high_apparent_temp','low_apparent_temp'],
+  colors: ['yellow','grey','red','blue'],
+  names: ['Daytime','Nighttime','High','Low'],
+}
+var actualCity = {
+  params: ['avg_temp','high_temp','low_temp'],
+  colors: ['black','red','blue'],
+  names: ['Average','High','Low'],
+}
 
 // TODO DAYTIME AND NIGHTTIME CHART
 // TODO TOOLTIP UPGRADE

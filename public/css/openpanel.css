@@ -328,6 +328,23 @@ select {
 
 #visualisation {
 	background-color: white;
-	width: 70%;
-	height: 55vh;
 }
+
+.transition-button {
+  border-radius: 10px;
+  font-family:'Dosis',sans-serif;
+  color: #ffffff;
+  font-size: 20px;
+  background: #000000;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  position: relative;
+  left: 40%;
+  top: 70%;
+}
+
+.transition-button:hover {
+  background: #000000;
+  text-decoration: none;
+}
+
