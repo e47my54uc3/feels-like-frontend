@@ -348,7 +348,7 @@ select {
 #visualisation {
 }
 
-.transition-button {
+.transition-button-forward, .transition-button-backward {
   /*border-radius: 10px;
   font-family:'Dosis',sans-serif;
   color: #ffffff;
