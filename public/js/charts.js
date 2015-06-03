@@ -4,7 +4,7 @@ var lineCharts = (function(){
   var feelsLike = function(apiData,id){
 
     // Parse raw API data
-    var raw = JSON.parse(apiData)
+    var raw = apiData
 
     // Create canvas
     $('<svg id="visualisation" width="'+parseInt(d3.select(id).style('width'),10)+'" height="500"></svg>').appendTo(id);

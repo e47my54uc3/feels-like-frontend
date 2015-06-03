@@ -317,3 +317,8 @@ select {
   top: 400px;
   left: 30%;
 }
+
+.graph-wrapper{
+	width: 100%;
+	height: 100%;
+}
