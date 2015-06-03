@@ -26,6 +26,8 @@
 // }
 
 // TODO DAYTIME AND NIGHTTIME CHART
+// TODO TOOLTIP UPGRADE
+// TODO LEGEND
 
 $(function(){
   cities.setEventListeners();
