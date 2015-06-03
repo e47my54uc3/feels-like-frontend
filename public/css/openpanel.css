@@ -326,8 +326,18 @@ select {
 	height: 100%;
 }
 
-#visualisation {
+#actual_graph{
+	margin-left: -15%;
 	background-color: white;
+	width: 100%;
+}
+
+#feels_like_graph{
+	background-color: white;
+	width: 70%;
+}
+
+#visualisation {
 }
 
 .transition-button {
