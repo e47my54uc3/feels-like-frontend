@@ -14,7 +14,6 @@ require 'unirest'
 require 'pg'
 require 'active_record'
 require 'logger'
-require 'pry' if development?
 require 'sinatra'
 require "sinatra/reloader" if development?
 
