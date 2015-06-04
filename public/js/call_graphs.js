@@ -7,25 +7,24 @@ $(document).ready(function(){
   
   // FEELS LIKE TEMP GRAPH
   $('.call-graph-button').on('click', '.solid-darkgreen', function(){
-    console.log('test');
     d3.selectAll("svg > *").remove()
     lineCharts.singleCity(cities.retrieve('to'),'#feels_like_graph', feelsLikeCity);
   });
 
-  chartArray = feelsLikeCity['params'];
+  feelsLikeArray = feelsLikeCity['params'];
   var feelsLikeIndex = 1;
 
   $('#panel1').on('click', '.transition-button-forward', function() {
     d3.selectAll("svg > *").remove();
     lineCharts.compareCities(cities.retrieve('from'), cities.retrieve('to'), '#feels_like_graph', feelsLikeCity['params'][feelsLikeIndex]);
-    feelsLikeIndex = (feelsLikeIndex + 1) % (chartArray.length);
+    feelsLikeIndex = (feelsLikeIndex + 1) % (feelsLikeArray.length);
     ;
   })
 
   $('#panel1').on('click', '.transition-button-backward', function() {
     d3.selectAll("svg > *").remove();
     lineCharts.compareCities(cities.retrieve('from'), cities.retrieve('to'), '#feels_like_graph', feelsLikeCity['params'][feelsLikeIndex]);
-    feelsLikeIndex = (chartArray.length + feelsLikeIndex - 1) % (chartArray.length);
+    feelsLikeIndex = (feelsLikeArray.length + feelsLikeIndex - 1) % (feelsLikeArray.length);
     ;
   })
 
@@ -34,16 +33,23 @@ $(document).ready(function(){
   // ACTUAL TEMP GRAPH
   $('.call-graph-button').on('click', '.solid-orange-2', function(){
     console.log('test');
-    // d3.select('svg').remove()
-    // debugger
-    // console.log($('#actual_graph').parent());
     lineCharts.singleCity(cities.retrieve('to'),'#actual_graph', actualCity);
   });
 
+  actualArray = actualCity['params'];
+  var actualIndex = 1;
+
   $('#panel2').on('click', '.transition-button-forward', function() {
-    d3.selectAll("svg > *").remove()
-    lineCharts.singleCity(cities.retrieve('from'),'#actual_graph', actualCity);
-  })
+    d3.selectAll("svg > *").remove();
+    lineCharts.compareCities(cities.retrieve('from'), cities.retrieve('to'), '#actual_graph', actualCity['params'][actualIndex]);
+    actualIndex = (actualIndex + 1) % (actualArray.length);
+  });
+
+  $('#panel2').on('click', '.transition-button-backward', function() {
+    d3.selectAll("svg > *").remove();
+    lineCharts.compareCities(cities.retrieve('from'), cities.retrieve('to'), '#actual_graph', actualCity['params'][actualIndex]);
+    actualIndex = (actualArray.length + actualIndex - 1) % (actualArray.length);
+  });
 
   
   // RAIN SNOW GRAPH
@@ -72,4 +78,3 @@ $(document).ready(function(){
   })
   
 })
-
