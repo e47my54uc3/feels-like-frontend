@@ -1,4 +1,4 @@
-// parse module helps to parse various strings and integers that help make up the chart
+// Helps parse strings and integers
 var parse = (function(){
   return {
     month: function(number){
@@ -20,11 +20,19 @@ var parse = (function(){
     },
   }
 })();
-// helpers module abstracts out common logic between the different charts
+// Abstracts out common code between charts
 var helpers = (function(){
   return {
-    highlight: function(){ d3.select(this).attr('stroke-width',5); },
-    lowlight: function(){ d3.select(this).attr('stroke-width',2); },
+    highlight: function(){
+      d3.select(this).attr('stroke-width',5);
+      var name = d3.select(this).attr('name');
+      d3.selectAll('.keys text').text('');
+      d3.select('#'+name).text(name);
+    },
+    lowlight: function(){
+      d3.select(this).attr('stroke-width',2);
+      d3.selectAll('.keys text').text(function(d,i){ return d });
+    },
     resetAxis: function(raw){
       d3.selectAll('g.x .tick text').html(function(d){
         var current = raw.data[d-1];
@@ -59,6 +67,14 @@ var helpers = (function(){
           from.data.map( function(obj) { return obj[param] } ),
           to.data.map( function(obj) { return obj[param] } ),
         ];
+    },
+    makeCompareData2: function(from,to,args){
+      var output = [];
+      args.params.map( function(param) {
+        output.push(from.data.map( function(obj) { return obj[param] }));
+        output.push(to.data.map( function(obj) { return obj[param] }));
+      });
+      return output;
     },
     setXRange: function(raw,margin,width){
       return d3.scale.linear()
@@ -119,27 +135,7 @@ var helpers = (function(){
         .attr("dy", ".35em");
       return focus
     },
-  }
-})();
-// calls the other methods and creates the lineCharts
-var lineCharts = (function(){
-  return {
-    singleCity: function(raw,id,args){
-      // Wipe Target div
-      $(id).html('')
-      // Create canvas
-      var vis = helpers.initCanvas(id)
-      // Define our line data
-      var data = helpers.makeLineData(raw,args)
-      // Set Width, Height, and Margin.
-      var margin = helpers.margins()
-      var width = helpers.width(id,margin)
-      var height = helpers.height(id,margin)
-      // Set xRange. See helpers for details
-      var xRange = helpers.setXRange(raw,margin,width)
-      // Set yRange. See helpers for details
-      var yRange = helpers.setYRange(data,margin,height)
-      // Append the Axises.
+    appendAxes: function(vis,xRange,yRange,height,margin,raw){
       vis.append("g")
         .attr("class","x axis")
         .attr("transform","translate(0,"+(height - margin.bottom)+")")
@@ -148,8 +144,98 @@ var lineCharts = (function(){
         .attr("class","y axis")
         .attr("transform","translate("+(margin.left) +",0)")
         .call(helpers.yAxis(yRange));
+      helpers.resetAxis(raw)
+    },
+    addLegend: function(width,margin,legendSpacing,legendRectSize,args,vis){
+      var legend = vis.append('g')
+        .attr('class','legend')
+        .attr('transform','translate('+(width - margin.right)+','+margin.top+')')
+
+      legend.selectAll('.keys')
+        .data(args.names)
+        .enter()
+        .append('g')
+        .attr('class', 'keys')
+        .attr('id',function(d,i){
+          if (i === args.names.length - 1){
+            return 'key1';
+          } else if ( i === args.names.length - 2){
+            return 'key2';
+          };
+        })
+        .attr('transform', function(d,i){
+          var height = legendRectSize + legendSpacing;
+          var offset =  height * args.names.length / 2;
+          var horz = -2 * legendRectSize;
+          var vert = i * height - offset;
+          return 'translate(' + horz + ',' + vert + ')';
+        });
+
+      var tooltip = legend.append('g')
+        .attr('class','tooltip')
+        .attr('transform',function(d,i){
+          var key1 = parseInt(d3.select('#key1').attr('transform').split(',')[1]);
+          var key2 = parseInt(d3.select('#key2').attr('transform').split(',')[1]);
+          var horz = -2 * legendRectSize;
+          var vert = key1 + (key1 - key2)
+          return 'translate(' + horz + ',' + vert + ')';
+        })
+
+      tooltip.append('rect')
+        .attr('width', legendRectSize)
+        .attr('height', legendRectSize)
+        .style('fill','black')
+        .style('stroke','black')
+
+      tooltip.append('text')
+        .attr('x', legendRectSize + legendSpacing)
+        .attr('y', legendRectSize - legendSpacing)
+
+      d3.selectAll('.keys')
+        .append('rect')
+        .attr('width', legendRectSize)
+        .attr('height', legendRectSize)
+        .style('fill', function(d,i){ return args.colors[i] })
+        .style('stroke', function(d,i){ return args.colors[i] });
+
+      d3.selectAll('.keys')
+        .append('text')
+        .attr('x', legendRectSize + legendSpacing)
+        .attr('y', legendRectSize - legendSpacing)
+        .attr('id',function(d) { return d; })
+        .text(function(d) { return d; });
+
+      return legend
+    }
+  }
+})();
+// Creates the charts
+var lineCharts = (function(){
+  return {
+    singleCity: function(raw,id,args){
+      // Wipe Target div
+      $(id).html('')
+      // Create canvas
+      var vis = helpers.initCanvas(id),
+      // Define our line data
+      data = helpers.makeLineData(raw,args),
+      // Set Width, Height, and Margin.
+      margin = helpers.margins(),
+      width = helpers.width(id,margin),
+      height = helpers.height(id,margin),
+      // Set xRange. See helpers for details
+      xRange = helpers.setXRange(raw,margin,width),
+      // Set yRange. See helpers for details
+      yRange = helpers.setYRange(data,margin,height),
       // Initialize tooltip group
-      var focus = helpers.initTooltip(vis)
+      focus = helpers.initTooltip(vis),
+      // Legend constants
+      legendRectSize = 18,
+      legendSpacing = 4,
+      // Add the legend
+      legend = helpers.addLegend(width,margin,legendSpacing,legendRectSize,args,vis);
+      // Append the Axises and fix the numbers there.
+      helpers.appendAxes(vis,xRange,yRange,height,margin,raw)
       // Create all the lines
       vis.selectAll('.line')
         .data(data)
@@ -168,42 +254,41 @@ var lineCharts = (function(){
           temp = Math.round(d[i]);
           focus.style('display',null)
             .attr('transform',"translate("+m[0]+","+m[1]+")")
-            .select('text').text(
-              parse.month(raw.data[i].month)+" "+raw.data[i].mday+" "+d3.select(this).attr('name')+": "+temp);
+          d3.select('.tooltip text').text(raw.data[i].mday+" "+parse.month(raw.data[i].month)+" : "+temp+" F");
+          d3.select('.tooltip rect')
+            .style('stroke',d3.select(this).style('stroke'))
+            .style('fill',d3.select(this).style('stroke'));
         })
-        // Change the Axis to human readable
-        helpers.resetAxis(raw);
     },
     compareCities: function(from,to,id,param){
       // Wipe Target div
       $(id).html('')
       // Create canvas
-      var vis = helpers.initCanvas(id)
+      var vis = helpers.initCanvas(id),
       // Define our line data
-      var data = helpers.makeCompareData(from,to,param)
+      data = helpers.makeCompareData(from,to,param),
       // Define the line colors.
-      var colors = ['red','blue'];
+      colors = ['red','blue'],
       // Define the line names.
-      var names = [from.city.name,to.city.name];
+      names = [from.city.name,to.city.name],
+      args = { colors: colors, names: names }
       // Set Width, Height, and Margin.
-      var margin = helpers.margins()
-      var width = helpers.width(id,margin)
-      var height = helpers.height(id,margin)
+      margin = helpers.margins(),
+      width = helpers.width(id,margin),
+      height = helpers.height(id,margin),
       // Set xRange. See helpers above
-      var xRange = helpers.setXRange(from,margin,width)
+      xRange = helpers.setXRange(from,margin,width),
       // Set yRange. See helpers above
-      var yRange = helpers.setYRange(data,margin,height)
-      // Append the Axises.
-      vis.append("g")
-        .attr("class","x axis")
-        .attr("transform","translate(0,"+(height - margin.bottom)+")")
-        .call(helpers.xAxis(xRange));
-      vis.append("g")
-        .attr("class","y axis")
-        .attr("transform","translate("+(margin.left) +",0)")
-        .call(helpers.yAxis(yRange));
+      yRange = helpers.setYRange(data,margin,height),
       // Initialize tooltip group
-      var focus = helpers.initTooltip(vis)
+      focus = helpers.initTooltip(vis);
+      // Legend constants
+      legendRectSize = 18,
+      legendSpacing = 4,
+      // Add the legend
+      legend = helpers.addLegend(width,margin,legendSpacing,legendRectSize,args,vis);
+      // Append the Axises.
+      helpers.appendAxes(vis,xRange,yRange,height,margin,from);
       // Create all the lines
       vis.selectAll('.line')
         .data(data)
@@ -224,44 +309,45 @@ var lineCharts = (function(){
           city = [from,to].filter(function(obj){ return obj.city.name === cityName })[0];
           focus.style('display',null)
             .attr('transform',"translate("+m[0]+","+m[1]+")")
-            .select('text').text(
-              parse.month(city.data[i].month)+" "+city.data[i].mday+" "+cityName+": "+temp);
+          d3.select('.tooltip text').text(
+              city.data[i].mday+" "+parse.month(city.data[i].month)+": "+temp+" F");
+          d3.select('.tooltip rect')
+            .style('stroke',d3.select(this).style('stroke'))
+            .style('fill',d3.select(this).style('stroke'));
         })
-      helpers.resetAxis(from)
     },
     dayNight: function(raw,id,args){
       // Wipe Target div
       $(id).html('');
       // Create canvas
-      var vis = helpers.initCanvas(id);
+      var vis = helpers.initCanvas(id),
       // Define our line data
-      var data = helpers.makeLineData(raw,args)
+      data = helpers.makeLineData(raw,args),
       // Set Width, Height, and Margin.
-      var margin = helpers.margins()
-      var width = helpers.width(id,margin)
-      var height = helpers.height(id,margin)
+      margin = helpers.margins(),
+      width = helpers.width(id,margin),
+      height = helpers.height(id,margin),
       // Set xRange. See helpers
-      var xRange = helpers.setXRange(raw,margin,width);
-      // Set yRange. See helpers
-      var yRange = d3.scale.linear()
+      xRange = helpers.setXRange(raw,margin,width),
+      // Set yRange. Needs custom domain for number of min in a day.
+      yRange = d3.scale.linear()
         .range([height - margin.top, margin.bottom])
-        .domain([0,1440]);
-      // Append the Axises.
-      vis.append("g")
-        .attr("class","x axis")
-        .attr("transform","translate(0,"+(height - margin.bottom)+")")
-        .call(helpers.xAxis(xRange));
-      vis.append("g")
-        .attr("class","y axis")
-        .attr("transform","translate("+(margin.left) +",0)")
-        .call(helpers.yAxis(yRange));
+        .domain([0,1440]),
       // Initialize tooltip group
-      var focus = helpers.initTooltip(vis)
+      focus = helpers.initTooltip(vis),
+      // Legend constants
+      legendRectSize = 18,
+      legendSpacing = 4,
+      // Add the legend
+      legend = helpers.addLegend(width,margin,legendSpacing,legendRectSize,args,vis);
       // Create a blank line
-      var line = d3.svg.line()
+      line = d3.svg.line()
         .x(function(d,i){ return xRange(i+1);})
         .y(function(d){ return yRange(parse.toMinutes(d))})
-        .interpolate('basis')
+        .interpolate('basis');
+      // Append the Axises.
+      helpers.appendAxes(vis,xRange,yRange,height,margin,raw);
+      helpers.resetAxisDates(raw)
       // Create all the lines
       vis.selectAll('.line')
         .data(data)
@@ -280,9 +366,11 @@ var lineCharts = (function(){
           time = d[i];
           focus.style('display',null)
             .attr('transform',"translate("+m[0]+","+m[1]+")")
-            .select('text') .text(parse.month(raw.data[i].month)+" "+raw.data[i].mday+" "+d3.select(this).attr('name')+": "+time);
+          d3.select('.tooltip text').text(raw.data[i].mday+" "+parse.month(raw.data[i].month)+": "+time);
+          d3.select('.tooltip rect')
+            .style('stroke',d3.select(this).style('stroke'))
+            .style('fill',d3.select(this).style('stroke'));
         })
-      helpers.resetAxisDates(raw);
     },
   }
 })();

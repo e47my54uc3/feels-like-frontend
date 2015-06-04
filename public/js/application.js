@@ -29,7 +29,7 @@ var actualCity = {
 // DAYNIGHT ARGS HASH
 var dayNight = {
   params: ['sunrise','sunset'],
-  colors: ['yellow','black'],
+  colors: ['yellow','purple'],
   names: ['Sunrise', 'Sunset'],
 }
 
@@ -44,13 +44,12 @@ $(function(){
     var to = cities.retrieve('to');
 
     // Shows the set piece single city charts
-    // lineCharts.singleCity(from,'#target',argsHash)
+    // lineCharts.singleCity(from,'#target',feelsLikeCity)
 
     // Shows the comparison between two cities for any of the params listed above
-    // lineCharts.compareCities(from,to,'#target',param)
+    // lineCharts.compareCities(from,to,'#target','avg_temp')
 
     // Shows the time of Sunrise and Sunset for a single city
-    // lineCharts.dayNight(from, '#target', dayNight)
-
+    lineCharts.dayNight(from, '#target', dayNight)
   });
 })
