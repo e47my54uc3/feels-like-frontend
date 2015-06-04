@@ -350,13 +350,7 @@ select {
 }
 
 .transition-button-forward, .transition-button-backward {
-  /*border-radius: 10px;
-  font-family:'Dosis',sans-serif;
-  color: #ffffff;
-  font-size: 20px;
-  background: #000000;*/
   padding: 10px 20px 10px 20px;
-  /*text-decoration: none;*/
   position: relative;
   display: inline-block;
   left: 45%;
@@ -368,13 +362,13 @@ select {
 }
 
 
-.marks_submit {
+.compare_submit {
   margin-left: 36em;
   border: 2px outset buttonface;
   -webkit-appearance: push-button !important;
 }
 
-.marks_month_form {
+.compare_month_form {
   margin-left: 34em
 }
 

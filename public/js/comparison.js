@@ -16,11 +16,11 @@ $('.call-graph-button').on('click', '.solid-red', function(){
   // var from = cities.retrieve('from');
   // var to = cities.retrieve('to');
   // attributes = [thing,thing,thing,thing,thing]
-  // marksThing.go(target,from,to,attribute)
-  $(".marks_month_form").on('submit', function(event){
+  // compareThing.go(target,from,to,attribute)
+  $(".compare_month_form").on('submit', function(event){
     event.preventDefault();
 
-    var selected_month = $(".marks_month_form option:selected").val();
+    var selected_month = $(".compare_month_form option:selected").val();
 
     var city_object = function(fromto){
             var retrievedObject = localStorage.getItem(fromto);

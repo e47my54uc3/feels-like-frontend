@@ -4,7 +4,7 @@ $(document).ready(function(){
     // debugger
   });
 
-  
+
   // FEELS LIKE TEMP GRAPH
   $('.call-graph-button').on('click', '.solid-darkgreen', function(){
     d3.selectAll("svg > *").remove()
@@ -51,19 +51,19 @@ $(document).ready(function(){
     actualIndex = (actualArray.length + actualIndex - 1) % (actualArray.length);
   });
 
-  
-  // RAIN SNOW GRAPH
-  $('.call-graph-button').on('click', '.solid-red', function(){
-    d3.selectAll("svg > *").remove()
-    console.log('red');
-    //insert calls for the daylight
-  });
 
-  $('#panel3').on('click', '.transition-button-forward', function() {
-    d3.selectAll("svg > *").remove()
-    lineCharts.singleCity(cities.retrieve('from'),'#rain_snow_graph', rainSnowCity);
-  })
- 
+  // RAIN SNOW GRAPH
+  // $('.call-graph-button').on('click', '.solid-red', function(){
+  //   d3.selectAll("svg > *").remove()
+  //   console.log('red');
+  //   //insert calls for the daylight
+  // });
+
+  // $('#panel3').on('click', '.transition-button-forward', function() {
+  //   d3.selectAll("svg > *").remove()
+  //   lineCharts.singleCity(cities.retrieve('from'),'#rain_snow_graph', rainSnowCity);
+  // })
+
 
 
   // DAYLIGHT GRAPH
@@ -81,5 +81,5 @@ $(document).ready(function(){
     d3.selectAll("svg > *").remove()
     lineCharts.dayNight(cities.retrieve('to'),'#daylight_graph', dayNight);
   })
-  
+
 })
