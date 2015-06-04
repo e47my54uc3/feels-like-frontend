@@ -57,7 +57,7 @@
 
     <div class="call-graph-button">
         <div data-panelid="panel3" data-pos="right" class="op-tab op-block1 solid-red floatright box-shadow">
-          <h3 id="tastes_like">Rain & Snow</h3>
+          <h3 id="tastes_like">Compare</h3>
         </div>
     </div>
 
@@ -431,7 +431,7 @@
          <div class="button_block">
             <div class="transition-button-backward">
                 <img src="/images/arrow-left-48.png"/>
-            </div>             
+            </div>
             <div class="transition-button-forward">
                 <img src="/images/arrow-right-48.png"/>
             </div>
@@ -602,7 +602,7 @@
             <h3 class="light-text">What's the actual temperature of your new city?</h3>
             <div class="graph-wrapper">
               <div id="actual_graph">
-                 
+
               </div>
             </div>
         </div>
@@ -610,7 +610,7 @@
         <div class="button_block">
             <div class="transition-button-backward">
                 <img src="/images/arrow-left-48.png"/>
-            </div>             
+            </div>
             <div class="transition-button-forward">
                 <img src="/images/arrow-right-48.png"/>
             </div>
@@ -653,20 +653,49 @@
     <!-- Panel Content -->
     <div class='op-panelform'>
 
-    <h3 class="light-text">How often does it rain or snow in your new city?</h3>
+    <h3 class="light-text">Compare two cities by month</h3>
     <div class="graph-wrapper">
-        <div id="rain_snow_graph">
+        <div id="compare-block">
+          <div class="instructions">
+            <form id="temp_form" class="marks_month_form" action="/month" style='display:inline'>
+              <select name="month">
+                <option value="Choose Month">Choose Month</option>
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+              </select>
+              <br>
+              <br>
+              <input class="marks_submit" type="submit" text-indent: 100px >
+            </form>
+          </div>
+
+          <div class="comparisons">
+          </div>
+
         </div>
     </div>
 
     <div class="button_block">
         <div class="transition-button-backward">
             <img src="/images/arrow-left-48.png"/>
-        </div>             
+        </div>
         <div class="transition-button-forward">
             <img src="/images/arrow-right-48.png"/>
         </div>
     </div>
+
+
+
 
       <div class="thumb-holder">
         <!-- <div class="thumbnails"><img src="/images/demo/1.jpg" alt="0img-demo/1.jpg"></div> -->
@@ -790,20 +819,20 @@
 
 
         <!-- Panel Content -->
-        
 
-        
+
+
 
         <div class='op-panelform'>
         <h3 class="light-text">How many hours of daylight in your new city?</h3>
         <div class="graph-wrapper">
-          <div id="daylight_graph"> 
+          <div id="daylight_graph">
           </div>
         </div>
         <div class="button_block">
             <div class="transition-button-backward">
                 <img src="/images/arrow-left-48.png"/>
-            </div>             
+            </div>
             <div class="transition-button-forward">
                 <img src="/images/arrow-right-48.png"/>
             </div>

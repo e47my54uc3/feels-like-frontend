@@ -328,22 +328,22 @@ select {
 }
 
 #actual_graph{
-	background-color: #FFF8DC;
-	width: 100%;
+  background-color: #FFF8DC;
+  width: 100%;
 }
 
 #feels_like_graph{
-	background-color: #C4FFE2;
-	width: 100%;
+  background-color: #C4FFE2;
+  width: 100%;
 }
 
 #daylight_graph{
   background-color: #78DEF3;
-	
+
 }
 
-#rain_snow_graph{
-
+#compare-block{
+  background-color: white;
 }
 
 #visualisation {
@@ -367,3 +367,17 @@ select {
   text-decoration: none;
 }
 
+
+.marks_submit {
+  margin-left: 36em;
+  border: 2px outset buttonface;
+  -webkit-appearance: push-button !important;
+}
+
+.marks_month_form {
+  margin-left: 34em
+}
+
+#temp_form {
+  margin: 0;
+}
