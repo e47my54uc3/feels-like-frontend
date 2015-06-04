@@ -69,12 +69,17 @@ $(document).ready(function(){
   // DAYLIGHT GRAPH
   $('.call-graph-button').on('click', '.solid-blue', function(){
     d3.selectAll("svg > *").remove()
-    //insert calls for the daylight
+    lineCharts.dayNight(cities.retrieve('to'), '#daylight_graph', dayNight)
   });
 
   $('#panel4').on('click', '.transition-button-forward', function() {
     d3.selectAll("svg > *").remove()
-    lineCharts.singleCity(cities.retrieve('from'),'#sunlight_graph', SunlightCity);
+    lineCharts.dayNight(cities.retrieve('from'),'#daylight_graph', dayNight);
+  });
+
+  $('#panel4').on('click', '.transition-button-backward', function() {
+    d3.selectAll("svg > *").remove()
+    lineCharts.dayNight(cities.retrieve('to'),'#daylight_graph', dayNight);
   })
   
 })
