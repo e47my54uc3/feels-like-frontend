@@ -328,16 +328,17 @@ select {
 }
 
 #actual_graph{
-	background-color: white;
+	background-color: #FFF8DC;
 	width: 100%;
 }
 
 #feels_like_graph{
-	background-color: white;
+	background-color: #C4FFE2;
 	width: 100%;
 }
 
 #daylight_graph{
+  background-color: #78DEF3;
 	
 }
 
