@@ -1,5 +1,5 @@
 $(function(){
-
+$('.call-graph-button').on('click', '.solid-red', function(){
   var city_object = function(fromto){
             var retrievedObject = localStorage.getItem(fromto);
             return JSON.parse(retrievedObject);
@@ -9,7 +9,7 @@ $(function(){
   var to_name = city_object("to").city.name.replace("_"," ");
 
 
-  $(".instructions").prepend("<p style='display: inline-block'>Select a month to compare the weather of " + to_name + " to " + from_name + "</p>")
+  $(".instructions").prepend("<p style='display: inline-block'>Select a month to compare the weather of " + to_name + " to " + from_name + "</p>");
 
 
 
@@ -164,8 +164,9 @@ $(function(){
 
           console.log("message:", message)
 
-          $(".comparisons")
-          .prepend("<br><p>" + message + "</p><u><p>Average Temperatures:</p></u><p>" + to_city_name + ", " + selected_month + ": " + to_city_temp + "°</p>" + city_temps_html + "<br>")
+          $(".comparisons").empty();
+
+          $(".comparisons").append("<br><p>" + message + "</p><u><p>Average Temperatures:</p></u><p>" + to_city_name + ", " + selected_month + ": " + to_city_temp + "°</p>" + city_temps_html + "<br>")
 
 
         };
@@ -177,3 +178,4 @@ $(function(){
 
 
   });
+});
