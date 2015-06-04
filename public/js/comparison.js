@@ -9,8 +9,13 @@ $('.call-graph-button').on('click', '.solid-red', function(){
   var to_name = city_object("to").city.name.replace("_"," ");
 
 
-  $(".instructions").prepend("<p style='display: inline-block'>Select a month to compare the weather of " + to_name + " to " + from_name + "</p>");
+  
 
+  if ($('.instructions').find('p').length){
+    $('.instructions').find('p').replaceWith("<p style='display: inline-block'>Select a month to compare the weather of " + to_name + " to " + from_name + "</p>");
+  } else {
+    $(".instructions").prepend("<p style='display: inline-block'>Select a month to compare the weather of " + to_name + " to " + from_name + "</p>");
+  }
 
 
   // var from = cities.retrieve('from');
@@ -154,10 +159,10 @@ $('.call-graph-button').on('click', '.solid-red', function(){
 
           if(to_city_temp > biggest_from_city_number){
             var difference = to_city_temp - biggest_from_city_number
-            var message = selected_month + " in " + to_city_name + " feels " + difference + "° hotter than the hottest month in " + from_city_name + "!!!"
+            var message = selected_month + " in " + to_city_name + " feels " + difference + "° hotter than the hottest month in " + from_city_name + "."
           } else if (to_city_temp < smallest_from_city_number){
             var difference = smallest_from_city_number - to_city_temp
-            var message = selected_month + " in " + to_city_name + " feels " + difference + "° colder than the coldest month in " + from_city_name + "!!!"
+            var message = selected_month + " in " + to_city_name + " feels " + difference + "° colder than the coldest month in " + from_city_name + "."
           } else {
             var message = selected_month + " in " + to_city_name + " feels like " + string_of_closest_matching_months + " in " + from_city_name + "."
           }
