@@ -1,6 +1,7 @@
 $(document).ready(function(){
   $("img").on('click', function() {
-    d3.selectAll("svg > *").remove()
+    d3.selectAll("svg > *").remove();
+    $('.comparisons').html("");
     // debugger
   });
 

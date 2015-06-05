@@ -102,10 +102,7 @@ var helpers = (function(){
     setYRange: function(data,margin,height){
       return d3.scale.linear()
         .range([height - margin.top, margin.bottom])
-        .domain([
-          d3.min([].concat.apply([],data),function (d) { return Math.round(d); }),
-          d3.max([].concat.apply([],data),function (d) { return Math.round(d); })
-        ]);
+        .domain([0, 110]);
     },
     margins: function(){
       return { top: 50, right: 20, bottom: 50, left: 50 };
@@ -339,7 +336,7 @@ var lineCharts = (function(){
           i = Math.round(xRange.invert(m[0])) - 1,
           temp = Math.round(d[i]),
           cityName = d3.select(this).attr('name'),
-          city = [from,to].filter(function(obj){ return obj.city.name === cityName })[0];
+          city = [from,to].filter(function(obj){ return parse.city(obj.city.name) === cityName })[0];
           focus.style('display',null)
             .attr('transform',"translate("+m[0]+","+m[1]+")")
           d3.select('.tooltip text').text(

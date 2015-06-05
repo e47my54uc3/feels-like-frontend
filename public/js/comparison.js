@@ -9,7 +9,7 @@ $('.call-graph-button').on('click', '.solid-red', function(){
   var to_name = city_object("to").city.name.replace("_"," ");
 
 
-  
+
 
   if ($('.instructions').find('p').length){
     $('.instructions').find('p').replaceWith("<p style='display: inline-block'>Select a month to compare the weather of " + to_name + " to " + from_name + "</p>");
@@ -22,7 +22,7 @@ $('.call-graph-button').on('click', '.solid-red', function(){
   // var to = cities.retrieve('to');
   // attributes = [thing,thing,thing,thing,thing]
   // compareThing.go(target,from,to,attribute)
-  $(".compare_month_form").on('submit', function(event){
+  $(".compare_month_form select").on('change', function(event){
     event.preventDefault();
 
     var selected_month = $(".compare_month_form option:selected").val();

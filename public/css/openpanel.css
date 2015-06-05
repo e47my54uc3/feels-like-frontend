@@ -375,3 +375,9 @@ select {
 #temp_form {
   margin: 0;
 }
+
+.menu_image{
+  width: 100%;
+  height: 46em;
+  margin-left: 70%;
+}

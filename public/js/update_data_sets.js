@@ -4,7 +4,6 @@ var cities = (function(){
         setEventListeners: function(){
             $('#city-1-data').change(function(){
                 var cityVal = $(this).find(":selected").val();
-                console.log("the value you selected: " + cityVal);
                 $.ajax({
                     type: "GET",
                     dataType: "JSON",
@@ -15,7 +14,6 @@ var cities = (function(){
             });
             $('#city-2-data').change(function(){
                 var cityVal = $(this).find(":selected").val();
-                console.log("the value you selected: " + cityVal);
                 $.ajax({
                     type: "GET",
                     dataType: "JSON",
