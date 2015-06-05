@@ -102,10 +102,7 @@ var helpers = (function(){
     setYRange: function(data,margin,height){
       return d3.scale.linear()
         .range([height - margin.top, margin.bottom])
-        .domain([
-          d3.min([].concat.apply([],data),function (d) { return Math.round(d); }),
-          d3.max([].concat.apply([],data),function (d) { return Math.round(d); })
-        ]);
+        .domain([ 0, 110 ]);
     },
     margins: function(){
       return { top: 50, right: 20, bottom: 50, left: 50 };
