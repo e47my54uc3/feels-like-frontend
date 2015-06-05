@@ -316,7 +316,7 @@ var lineCharts = (function(){
       // Add the legend
       legend = helpers.addLegend(width,margin,legendSpacing,legendRectSize,args,vis),
       // Initialize the title group
-      title = helpers.title(vis,width,height,margin,(parse.param(param)+" comparison for "+parse.city(from.city.name)+" and "+parse.city(to.city.name)));
+      title = helpers.title(vis,width,height,margin,(parse.param(param)+" comparison: "+parse.city(from.city.name)+" & "+parse.city(to.city.name)));
       // Append the Axises.
       helpers.appendAxes(vis,xRange,yRange,height,margin,from);
       // Create all the lines

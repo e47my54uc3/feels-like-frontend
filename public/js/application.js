@@ -33,7 +33,7 @@ var dayNight = {
   params: ['sunrise','sunset'],
   colors: ['yellow','purple'],
   names: ['Sunrise', 'Sunset'],
-  title: "Sunrise and Sunset times for "
+  title: "Sunrise & Sunset for "
 }
 
 // TODO TOOLTIP UPGRADE
