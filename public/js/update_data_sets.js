@@ -7,7 +7,7 @@ var cities = (function(){
                 $.ajax({
                     type: "GET",
                     dataType: "JSON",
-                    url: "http://dbc-feels-like.herokuapp.com/city/" + cityVal + "/weather"
+                    url: "//dbc-feels-like.herokuapp.com/city/" + cityVal + "/weather"
                 }).done(function(data){
                     localStorage.setItem('from', JSON.stringify(data));
                 })
@@ -17,7 +17,7 @@ var cities = (function(){
                 $.ajax({
                     type: "GET",
                     dataType: "JSON",
-                    url: "http://dbc-feels-like.herokuapp.com/city/" + cityVal + "/weather"
+                    url: "//dbc-feels-like.herokuapp.com/city/" + cityVal + "/weather"
                 }).done(function(data){
                     localStorage.setItem('to', JSON.stringify(data));
                 })
